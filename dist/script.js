@@ -239,6 +239,36 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.closest = function (sele
   return this;
 };
 
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.siblings = function () {
+  let numberOfitems = 0;
+  let counter = 0;
+  const copyObj = Object.assign({}, this);
+
+  for (let i = 0; i < copyObj.length; i++) {
+    const arr = copyObj[i].parentNode.children;
+
+    for (let j = 0; j < arr.length; j++) {
+      if (copyObj[i] === arr[j]) {
+        continue;
+      }
+
+      this[counter] = arr[j];
+      counter++;
+    }
+
+    numberOfitems += arr.length - 1;
+  }
+
+  this.length = numberOfitems;
+  const objLength = Object.keys(this).length;
+
+  for (; numberOfitems < objLength; numberOfitems++) {
+    delete this[numberOfitems];
+  }
+
+  return this;
+};
+
 /***/ }),
 
 /***/ "./src/js/lib/modules/classes.js":
